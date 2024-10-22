@@ -1,5 +1,7 @@
-import './App.css'
 import React, { useState } from 'react';
+import Description from './components/description';
+import Options from './components/options';
+import Feedback from './components/feedback';
 
 function App() {
   const [feedback, setFeedback] = useState({
@@ -26,27 +28,9 @@ function App() {
 
   return (
     <div>
-      <h1>Sip Happens Café</h1>
-      <p>Please leave your feedback about our service by selecting one of the options below.</p>
-      
+      <Description />
       <Options updateFeedback={updateFeedback} resetFeedback={resetFeedback} />
-      
-      <p>Good: {feedback.good}</p>
-      <p>Neutral: {feedback.neutral}</p>
-      <p>Bad: {feedback.bad}</p>
-      <p>Total: {totalFeedback}</p>
-      <p>Positive: {positiveFeedback}%</p>
-    </div>
-  );
-}
-
-function Options({ updateFeedback, resetFeedback }) {
-  return (
-    <div>
-      <button onClick={() => updateFeedback('good')}>Good</button>
-      <button onClick={() => updateFeedback('neutral')}>Neutral</button>
-      <button onClick={() => updateFeedback('bad')}>Bad</button>
-      <button onClick={resetFeedback}>Reset</button>
+      <Feedback feedback={feedback} total={totalFeedback} positive={positiveFeedback} />
     </div>
   );
 }
